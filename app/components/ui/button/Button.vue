@@ -1,18 +1,16 @@
 <script setup lang="ts">
 interface Props {
-  label: string
-  variant?: 'primary' | 'secondary'
+  label: string;
+  variant?: "primary" | "secondary";
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  variant: 'primary'
-})
+  variant: "primary",
+});
 </script>
 
 <template>
-  <button
-    :class="['btn', `btn--${props.variant}`]"
-  >
+  <button :class="['btn', `btn--${props.variant}`]">
     {{ props.label }}
   </button>
 </template>

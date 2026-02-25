@@ -10,10 +10,7 @@ const __dirname = dirname(__filename)
 const config: StorybookConfig = {
   stories: ['../app/components/**/*.stories.@(ts|js)'],
 
-  addons: [
-    '@storybook/addon-a11y',
-    '@storybook/addon-docs'
-  ],
+  addons: ['@storybook/addon-a11y', '@storybook/addon-docs'],
 
   framework: {
     name: '@storybook/vue3-vite',
