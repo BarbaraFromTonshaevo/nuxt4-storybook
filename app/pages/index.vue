@@ -1,6 +1,6 @@
 <template>
   <div>
     <h1>Home</h1>
-    <UiButton label="Click me" />
+    <UiButton variant="primary" size="m">Primary Button</UiButton>
   </div>
 </template>

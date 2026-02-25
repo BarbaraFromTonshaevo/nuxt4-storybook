@@ -9,22 +9,45 @@ const meta: Meta<typeof Button> = {
       control: "select",
       options: ["primary", "secondary"],
     },
+    size: {
+      control: "select",
+      options: ["s", "m", "l"],
+    },
+    disabled: {
+      control: "boolean",
+    },
   },
 };
 
 export default meta;
 type Story = StoryObj<typeof Button>;
 
-export const Primary: Story = {
-  args: {
-    label: "Primary",
-    variant: "primary",
-  },
-}; 
+const Template = (content: string): Story => ({
+  render: (args) => ({
+    components: { Button },
+    setup() {
+      return { args };
+    },
+    template: `
+      <Button v-bind="args">
+        ${content}
+      </Button>
+    `,
+  }),
+});
 
-export const Secondary: Story = {
+export const Primary = {
+  ...Template("Primary"),
   args: {
-    label: "Secondary",
+    variant: "primary",
+    size: "m",
+  },
+};
+
+export const Secondary = {
+  ...Template("Secondary"),
+  args: {
     variant: "secondary",
+    size: "m",
   },
 };
