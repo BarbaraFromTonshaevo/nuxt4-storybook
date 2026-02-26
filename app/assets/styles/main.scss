@@ -1,0 +1,13 @@
+/* Подключение инструментов (abstracts) */
+@use './abstracts/variables';
+@use './abstracts/colors';
+@use './abstracts/breakpoints';
+@use './abstracts/mixins';
+
+/* Базовые стили */
+@use './base/reset';
+@use './base/globals';
+@use './base/typography';
+
+@use './layout/container';
+@use './layout/sections'
