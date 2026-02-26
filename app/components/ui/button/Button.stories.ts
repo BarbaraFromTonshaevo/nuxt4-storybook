@@ -22,32 +22,21 @@ const meta: Meta<typeof Button> = {
 export default meta;
 type Story = StoryObj<typeof Button>;
 
-const Template = (content: string): Story => ({
-  render: (args) => ({
-    components: { Button },
-    setup() {
-      return { args };
+export const Primary: Story = {
+    render: (args) => ({
+      components: { Button },
+      setup() {
+        return { args };
+      },
+      template: `
+        <Button v-bind="args">
+          Primary Button
+        </Button>
+      `,
+    }),
+    args: {
+      variant: "primary",
+      size: "m",
+      disabled: false,
     },
-    template: `
-      <Button v-bind="args">
-        ${content}
-      </Button>
-    `,
-  }),
-});
-
-export const Primary = {
-  ...Template("Primary"),
-  args: {
-    variant: "primary",
-    size: "m",
-  },
-};
-
-export const Secondary = {
-  ...Template("Secondary"),
-  args: {
-    variant: "secondary",
-    size: "m",
-  },
-};
+  };

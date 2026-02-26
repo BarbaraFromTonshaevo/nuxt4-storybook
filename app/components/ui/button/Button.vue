@@ -1,61 +1,85 @@
 <template>
-  <component
-    :is="tag"
-    v-bind="componentProps"
-    :class="[
-      'ui-button',
-      `ui-button--${currentSize}`,
-      `ui-button--${variant}`,
-      { 'ui-button--disabled': disabled }
-    ]"
-  >
-    <slot />
-  </component>
-</template>
+    <NuxtLink
+      v-if="to"
+      :to="to"
+      :class="buttonClasses"
+      v-bind="componentProps"
+    >
+      <slot />
+    </NuxtLink>
+  
+    <a
+      v-else-if="href"
+      :href="href"
+      :class="buttonClasses"
+      v-bind="componentProps"
+    >
+      <slot />
+    </a>
+  
+    <button
+      v-else
+      :type="type ?? 'button'"
+      :class="buttonClasses"
+      v-bind="componentProps"
+    >
+      <slot />
+    </button>
+  </template>
+  
+  <script setup lang="ts">
+  import { computed } from 'vue'
+  import type { RouteLocationRaw } from 'vue-router'
 
-<script setup lang="ts">
-import { NuxtLink } from '#components'
-
-interface SizeProps {
-  mobile?: 's' | 'm' | 'l'
-  tablet?: 's' | 'm' | 'l'
-  desktop?: 's' | 'm' | 'l'
-}
-
-const props = defineProps<{
-  variant?: 'primary' | 'secondary'
-  size?: 's' | 'm' | 'l'
-  responsive?: SizeProps
-  disabled?: boolean
-  loading?: boolean
-  to?: string // NuxtLink
-  href?: string // внешний линк
-  type?: 'button' | 'submit' | 'reset'
-}>()
-
-const breakpoint = useBreakpoints()
-
-const currentSize = computed(() => {
-  if (props.responsive && props.responsive[breakpoint.value]) {
-    return props.responsive[breakpoint.value]
-  }
-  return props.size || 'm'
-})
-
-// Выбираем тег
-const tag = computed(() => {
-  if (props.to) return NuxtLink
-  if (props.href) return 'a'
-  return 'button'
-})
-
-// Пропсы для выбранного тега
-const componentProps = computed(() => {
-  if (props.to) return { to: props.to }
-  if (props.href) return { href: props.href, target: '_blank', rel: 'noopener noreferrer' }
-  return { type: props.type || 'button', disabled: props.disabled }
-})
-</script>
+  type ButtonVariant = 'primary' | 'secondary'
+  type ButtonSize = 's' | 'm' | 'l'
+  
+  const props = defineProps<{
+    to?: RouteLocationRaw
+    href?: string
+    type?: 'button' | 'submit' | 'reset'
+    variant?: ButtonVariant
+    size?: ButtonSize
+    disabled?: boolean
+  }>()
+  
+  
+  /**
+   * Пропсы, которые передаются в конечный элемент
+   */
+  const componentProps = computed(() => {
+    if (props.to) {
+      return {
+        to: props.to,
+      }
+    }
+  
+    if (props.href) {
+      return {
+        href: props.href,
+        target: '_blank',
+        rel: 'noopener noreferrer',
+      }
+    }
+  
+    return {
+      type: props.type ?? 'button',
+      disabled: props.disabled,
+    }
+  })
+  
+  /**
+   * Классы
+   */
+  const buttonClasses = computed(() => [
+    'ui-button',
+    `ui-button--${props.variant ?? 'primary'}`,
+    `ui-button--${props.size ?? 'm'}`,
+    {
+      'is-disabled': props.disabled,
+    },
+  ])
+  </script>
 
 <style lang="scss" scoped>
 .ui-button {
