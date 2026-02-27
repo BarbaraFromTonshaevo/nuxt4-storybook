@@ -1,76 +1,180 @@
-# Nuxt Minimal Starter
+# 🌍 Planet BAM
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+Frontend-приложение, построенное на современном стеке:
 
-## Setup
+* Nuxt 4
+* Vue 3
+* Pinia
+* Storybook 10
+* ESLint 9
+* Prettier 3
 
-Make sure to install dependencies:
+---
+
+# 📦 Tech Stack
+
+| Layer            | Technology |
+| ---------------- | ---------- |
+| Framework        | Nuxt 4     |
+| UI               | Vue 3      |
+| State Management | Pinia      |
+| Component Dev    | Storybook  |
+| Linting          | ESLint 9   |
+| Formatting       | Prettier 3 |
+| Styling          | Sass       |
+
+---
+
+# 🧩 Requirements
+
+* **Node.js 22.13.0**
+* npm ≥ 10
+
+Node-версия зафиксирована через Volta в `package.json`.
+
+---
+
+# ⚙ Environment Setup
+
+## 1️⃣ Install Volta (recommended)
+
+Linux / macOS:
 
 ```bash
-# npm
+curl https://get.volta.sh | bash
+source ~/.bashrc
+```
+
+Проверка установки:
+
+```bash
+volta --version
+```
+
+---
+
+## 2️⃣ Install dependencies
+
+```bash
 npm install
-
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
 ```
 
-## Development Server
+---
 
-Start the development server on `http://localhost:3000`:
+# 🚀 Development
+
+## Start dev server
 
 ```bash
-# npm
 npm run dev
-
-# pnpm
-pnpm dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
 ```
 
-## Production
+Приложение будет доступно на:
 
-Build the application for production:
+```
+http://localhost:3000
+```
+
+---
+
+# 🏗 Production
+
+## Build
 
 ```bash
-# npm
 npm run build
-
-# pnpm
-pnpm build
-
-# yarn
-yarn build
-
-# bun
-bun run build
 ```
 
-Locally preview production build:
+## Preview production build
 
 ```bash
-# npm
 npm run preview
-
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
 ```
 
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
-# nuxt4-storybook
+## Static generation (если используется)
+
+```bash
+npm run generate
+```
+
+---
+
+# 🎨 Storybook
+
+## Start Storybook
+
+```bash
+npm run storybook
+```
+
+Откроется на:
+
+```
+http://localhost:6006
+```
+
+## Build Storybook
+
+```bash
+npm run build-storybook
+```
+
+---
+
+# 🧹 Code Quality
+
+## Lint
+
+```bash
+npm run lint
+```
+
+## Fix lint issues
+
+```bash
+npm run lint:fix
+```
+
+## Format code
+
+```bash
+npm run format
+```
+
+---
+
+# 📁 Project Structure (High-Level)
+
+```
+├── components/
+├── pages/
+├── stores/
+├── assets/
+├── public/
+├── .storybook/
+└── nuxt.config.ts
+```
+
+---
+
+# 🔒 Node Version Policy
+
+Проект использует фиксированную версию Node (`22.13.0`) для:
+
+* совместимости с ESLint 9
+* корректной работы Nuxt 4
+* стабильной работы CI
+
+Если вы не используете Volta, создайте `.nvmrc`:
+
+```
+22.13.0
+```
+
+---
+
+# 📄 License
+
+Private project.
+
+---
